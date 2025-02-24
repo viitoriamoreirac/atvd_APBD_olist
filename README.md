@@ -100,7 +100,7 @@ O resultado de `Explain Analyze` *depois* das melhorias pode ser conferido [aqui
 ### 6. Auditoria do BD
 Para garantir auditoria, rastreabilidade e integridade das informações é interessante criar uma tabela de auditoria para cada tabela existente no banco, onde serão registradas todas as mudanças efetuadas de forma automática, através de triggers que vão capturar as mudanças.
 
-Como pode ser conferido [nesse exemplo](/07_auditoria_db.sql) onde foi criada a tabela order_audit para registrar mudanças e definidos triggers para capturar atualizações (UPDATE) e exclusões (DELETE).
+Como pode ser conferido [nesse exemplo](/07auditoria_db.sql) onde foi criada a tabela order_audit para registrar mudanças e definidos triggers para capturar atualizações (UPDATE) e exclusões (DELETE).
 - `trigger_audit_order`: Registra mudanças no status do pedido quando atualizado.
 - `trigger_audit_orders_delete`: Registra pedidos excluídos, armazenando o status antigo.
 
