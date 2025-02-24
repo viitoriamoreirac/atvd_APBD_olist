@@ -1,0 +1,97 @@
+CONSULTA 4.1
+-> Sort: total_vendas DESC  (actual time=2926..2926 rows=3095 loops=1)
+     -> Table scan on <temporary>  (actual time=2923..2924 rows=3095 loops=1)
+         -> Aggregate using temporary table  (actual time=2923..2923 rows=3095 loops=1)
+             -> Nested loop inner join  (cost=141001 rows=119403) (actual time=0.447..2601 rows=119463 loops=1)
+                 -> Nested loop inner join  (cost=93613 rows=119403) (actual time=0.433..2141 rows=119463 loops=1)
+                     -> Nested loop inner join  (cost=52905 rows=115071) (actual time=0.404..825 rows=115986 loops=1)
+                         -> Filter: (op.order_id is not null)  (cost=12630 rows=115071) (actual time=0.355..149 rows=115986 loops=1)
+                             -> Table scan on op  (cost=12630 rows=115071) (actual time=0.353..129 rows=115986 loops=1)
+                         -> Filter: (o.order_id = op.order_id)  (cost=0.25 rows=1) (actual time=0.00527..0.00545 rows=1 loops=115986)
+                             -> Single-row covering index lookup on o using PRIMARY (order_id=op.order_id)  (cost=0.25 rows=1) (actual time=0.00417..0.00422 rows=1 loops=115986)
+                     -> Filter: ((oi.order_id = o.order_id) and (oi.seller_id is not null))  (cost=0.25 rows=1.04) (actual time=0.00882..0.0109 rows=1.03 loops=115986)
+                         -> Index lookup on oi using PRIMARY (order_id=o.order_id)  (cost=0.25 rows=1.04) (actual time=0.00758..0.00953 rows=1.03 loops=115986)
+                 -> Single-row covering index lookup on s using PRIMARY (seller_id=oi.seller_id)  (cost=0.297 rows=1) (actual time=0.00332..0.0034 rows=1 loops=119463)
+ 
+
+ CONSULTA 4.2
+-> Limit: 10 row(s)  (actual time=663..663 rows=10 loops=1)
+     -> Sort: total_gasto DESC, limit input to 10 row(s) per chunk  (actual time=663..663 rows=10 loops=1)
+         -> Table scan on <temporary>  (actual time=653..656 rows=14516 loops=1)
+             -> Aggregate using temporary table  (actual time=653..653 rows=14516 loops=1)
+                 -> Nested loop inner join  (cost=27891 rows=12714) (actual time=0.438..586 rows=17240 loops=1)
+                     -> Nested loop inner join  (cost=13916 rows=10971) (actual time=0.345..334 rows=14516 loops=1)
+                         -> Filter: ((o.order_purchase_timestamp between '2017-01-01' and '2017-06-30') and (o.customer_id is not null))  (cost=10076 rows=10971) (actual time=0.311..245 rows=14516 loops=1)
+                             -> Table scan on o  (cost=10076 rows=98750) (actual time=0.293..107 rows=99441 loops=1)
+                         -> Single-row covering index lookup on c using PRIMARY (customer_id=o.customer_id)  (cost=0.25 rows=1) (actual time=0.00548..0.00555 rows=1 loops=14516)
+                     -> Index lookup on op using fk_order_payment_order (order_id=o.order_id), with index condition: (o.order_id = op.order_id)  (cost=1.16 rows=1.16) (actual time=0.0142..0.0167 rows=1.19 loops=14516)
+ 
+
+
+CONSULTA 4.3
+-> Limit: 10 row(s)  (actual time=663..663 rows=10 loops=1)
+     -> Sort: total_gasto DESC, limit input to 10 row(s) per chunk  (actual time=663..663 rows=10 loops=1)
+         -> Table scan on <temporary>  (actual time=653..656 rows=14516 loops=1)
+             -> Aggregate using temporary table  (actual time=653..653 rows=14516 loops=1)
+                 -> Nested loop inner join  (cost=27891 rows=12714) (actual time=0.438..586 rows=17240 loops=1)
+                     -> Nested loop inner join  (cost=13916 rows=10971) (actual time=0.345..334 rows=14516 loops=1)
+                         -> Filter: ((o.order_purchase_timestamp between '2017-01-01' and '2017-06-30') and (o.customer_id is not null))  (cost=10076 rows=10971) (actual time=0.311..245 rows=14516 loops=1)
+                             -> Table scan on o  (cost=10076 rows=98750) (actual time=0.293..107 rows=99441 loops=1)
+                         -> Single-row covering index lookup on c using PRIMARY (customer_id=o.customer_id)  (cost=0.25 rows=1) (actual time=0.00548..0.00555 rows=1 loops=14516)
+                     -> Index lookup on op using fk_order_payment_order (order_id=o.order_id), with index condition: (o.order_id = op.order_id)  (cost=1.16 rows=1.16) (actual time=0.0142..0.0167 rows=1.19 loops=14516)
+ 
+
+ CONSULTA 4.4
+-> Table scan on <temporary>  (actual time=2116..2164 rows=45027 loops=1)
+     -> Aggregate using temporary table  (actual time=2116..2116 rows=45026 loops=1)
+         -> Nested loop inner join  (cost=27891 rows=12714) (actual time=0.405..1274 rows=52985 loops=1)
+             -> Nested loop inner join  (cost=13916 rows=10971) (actual time=0.37..565 rows=45027 loops=1)
+                 -> Filter: ((o.order_purchase_timestamp between '2017-01-01' and '2017-12-31') and (o.customer_id is not null))  (cost=10076 rows=10971) (actual time=0.344..285 rows=45027 loops=1)
+                     -> Table scan on o  (cost=10076 rows=98750) (actual time=0.334..122 rows=99441 loops=1)
+                 -> Single-row covering index lookup on c using PRIMARY (customer_id=o.customer_id)  (cost=0.25 rows=1) (actual time=0.00567..0.00573 rows=1 loops=45027)
+             -> Index lookup on op using fk_order_payment_order (order_id=o.order_id), with index condition: (o.order_id = op.order_id)  (cost=1.16 rows=1.16) (actual time=0.0127..0.0151 rows=1.18 loops=45027)
+ 
+
+ CONSULTA 4.5
+-> Limit: 5 row(s)  (actual time=1750..1750 rows=5 loops=1)
+     -> Sort: total_vendas DESC, limit input to 5 row(s) per chunk  (actual time=1750..1750 rows=5 loops=1)
+         -> Table scan on <temporary>  (actual time=1728..1739 rows=32787 loops=1)
+             -> Aggregate using temporary table  (actual time=1728..1728 rows=32787 loops=1)
+                 -> Nested loop inner join  (cost=13964 rows=11384) (actual time=0.314..1425 rows=102093 loops=1)
+                     -> Filter: (o.order_purchase_timestamp between '2017-01-01' and '2023-06-30')  (cost=10076 rows=10971) (actual time=0.274..268 rows=99112 loops=1)
+                         -> Table scan on o  (cost=10076 rows=98750) (actual time=0.266..105 rows=99441 loops=1)
+                     -> Filter: (oi.order_id = o.order_id)  (cost=0.251 rows=1.04) (actual time=0.00902..0.0111 rows=1.03 loops=99112)
+                         -> Covering index lookup on oi using PRIMARY (order_id=o.order_id)  (cost=0.251 rows=1.04) (actual time=0.00785..0.0098 rows=1.03 loops=99112)
+ 
+ 
+
+ CONSULTA 4.6
+-> Limit: 10 row(s)  (cost=10076 rows=10) (actual time=179..179 rows=10 loops=1)
+     -> Sort: atraso_dias DESC, limit input to 10 row(s) per chunk  (cost=10076 rows=98750) (actual time=179..179 rows=10 loops=1)
+         -> Filter: (o.order_delivered_customer_date > o.order_estimated_delivery_date)  (cost=10076 rows=98750) (actual time=0.364..171 rows=7827 loops=1)
+             -> Table scan on o  (cost=10076 rows=98750) (actual time=0.351..143 rows=99441 loops=1)
+ 
+
+ CONSULTA 4.7
+-> Limit: 10 row(s)  (actual time=4182..4182 rows=10 loops=1)
+     -> Sort: total_gasto DESC, limit input to 10 row(s) per chunk  (actual time=4182..4182 rows=10 loops=1)
+         -> Table scan on <temporary>  (actual time=4046..4121 rows=99440 loops=1)
+             -> Aggregate using temporary table  (actual time=4046..4046 rows=99439 loops=1)
+                 -> Nested loop inner join  (cost=93180 rows=115071) (actual time=0.308..2148 rows=115986 loops=1)
+                     -> Nested loop inner join  (cost=52905 rows=115071) (actual time=0.298..1357 rows=115986 loops=1)
+                         -> Filter: (op.order_id is not null)  (cost=12630 rows=115071) (actual time=0.266..229 rows=115986 loops=1)
+                             -> Table scan on op  (cost=12630 rows=115071) (actual time=0.265..201 rows=115986 loops=1)
+                         -> Filter: ((o.order_id = op.order_id) and (o.customer_id is not null))  (cost=0.25 rows=1) (actual time=0.00902..0.00921 rows=1 loops=115986)
+                             -> Single-row index lookup on o using PRIMARY (order_id=op.order_id)  (cost=0.25 rows=1) (actual time=0.00744..0.0075 rows=1 loops=115986)
+                     -> Single-row covering index lookup on c using PRIMARY (customer_id=o.customer_id)  (cost=0.25 rows=1) (actual time=0.0062..0.00628 rows=1 loops=115986)
+ 
+
+ CONSULTA 4.8
+ -> Sort: media_tempo_entrega DESC  (actual time=1349..1349 rows=27 loops=1)
+     -> Table scan on <temporary>  (actual time=1349..1349 rows=27 loops=1)
+         -> Aggregate using temporary table  (actual time=1349..1349 rows=27 loops=1)
+             -> Nested loop inner join  (cost=41182 rows=88875) (actual time=0.468..957 rows=96476 loops=1)
+                 -> Filter: ((o.order_delivered_customer_date is not null) and (o.customer_id is not null))  (cost=10076 rows=88875) (actual time=0.437..241 rows=96476 loops=1)
+                     -> Table scan on o  (cost=10076 rows=98750) (actual time=0.434..210 rows=99441 loops=1)
+                 -> Single-row index lookup on c using PRIMARY (customer_id=o.customer_id)  (cost=0.25 rows=1) (actual time=0.00678..0.00689 rows=1 loops=96476)
+ 

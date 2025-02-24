@@ -20,7 +20,6 @@ SELECT customer_id FROM (
 ) AS duplicates WHERE rn > 1;
 
 ALTER TABLE customer ADD CONSTRAINT pk_customer PRIMARY KEY(customer_id);
-CREATE INDEX idx_customer_id ON customer(customer_id);
 
 
 
@@ -41,7 +40,6 @@ WHERE id IN (
 ALTER TABLE geo_location DROP COLUMN id;
 
 ALTER TABLE geo_location ADD CONSTRAINT pk_geo_location PRIMARY KEY(geolocation_zip_code_prefix, geolocation_city, geolocation_state);
-CREATE INDEX idx_geolocation ON geo_location (geolocation_zip_code_prefix, geolocation_city, geolocation_state);
 
 CREATE VIEW vw_customer_without_geo_location AS (
     SELECT DISTINCT c.customer_zip_code_prefix as prefix, c.customer_city as city, c.customer_state as state
@@ -141,7 +139,8 @@ ALTER TABLE olist.order DROP COLUMN id;
 ALTER TABLE olist.order ADD CONSTRAINT pk_order PRIMARY KEY(order_id);
 ALTER TABLE olist.order ADD CONSTRAINT fk_order_customer FOREIGN KEY (customer_id) REFERENCES customer(customer_id);
 
-DESCRIBE order_item;
+
+------ Alterações na tabela order_item --------------
 ALTER TABLE order_item ADD COLUMN id SERIAL;
 DELETE FROM order_item WHERE id IN (
     SELECT id FROM (
