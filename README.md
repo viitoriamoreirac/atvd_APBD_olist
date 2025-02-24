@@ -62,14 +62,14 @@ Criei views (vw_customer_without_geo_location e vw_seller_without_geo_location) 
 Após a remoção das duplicatas e a criação das chaves, as colunas temporárias `id` foram removidas das tabelas.
 
 ### 4. Consultas:
-- [Consulta 4.1](03_queries.sql)
-- [Consulta 4.2](03_queries.sql)
-- [Consulta 4.3](03_queries.sql)
-- [Consulta 4.4](03_queries.sql)
-- [Consulta 4.5](03_queries.sql)
-- [Consulta 4.6](03_queries.sql)
-- [Consulta 4.7](03_queries.sql)
-- [Consulta 4.8](03_queries.sql)
+- [Consulta 4.1](https://github.com/viitoriamoreirac/atvd_APBD_olist/blob/main/04_queries.sql#L1)
+- [Consulta 4.2](https://github.com/viitoriamoreirac/atvd_APBD_olist/blob/main/04_queries.sql#L10)
+- [Consulta 4.3](https://github.com/viitoriamoreirac/atvd_APBD_olist/blob/main/04_queries.sql#L20)
+- [Consulta 4.4](https://github.com/viitoriamoreirac/atvd_APBD_olist/blob/main/04_queries.sql#L29)
+- [Consulta 4.5](https://github.com/viitoriamoreirac/atvd_APBD_olist/blob/main/04_queries.sql#L37)
+- [Consulta 4.6](https://github.com/viitoriamoreirac/atvd_APBD_olist/blob/main/04_queries.sql#L46)
+- [Consulta 4.7](https://github.com/viitoriamoreirac/atvd_APBD_olist/blob/main/04_queries.sql#L53)
+- [Consulta 4.8](https://github.com/viitoriamoreirac/atvd_APBD_olist/blob/main/04_queries.sql#L62)
 
 ### 5. Otimização das consultas
 
