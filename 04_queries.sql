@@ -38,7 +38,7 @@ GROUP BY o.order_id, c.customer_id, o.order_status;
 SELECT oi.product_id, COUNT(oi.order_id) AS total_vendas
 FROM order_item oi
 JOIN `order` o ON oi.order_id = o.order_id
-WHERE o.order_purchase_timestamp BETWEEN '2017-01-01' AND '2023-06-30'
+WHERE o.order_purchase_timestamp BETWEEN '2017-01-01' AND '2017-06-30'
 GROUP BY oi.product_id
 ORDER BY total_vendas DESC
 LIMIT 5;

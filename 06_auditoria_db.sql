@@ -48,6 +48,8 @@ END $$
 
 DELIMITER ;
 
+
+-- testando
 UPDATE `order` 
 SET order_status = 'delivered'
 WHERE order_id = '0010dedd556712d7bb69a19cb7bbd37a';
