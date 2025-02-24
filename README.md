@@ -83,7 +83,7 @@ Os filtros de data e outras condições foram ajustados para serem aplicados o m
 Funções como TIMESTAMPDIFF() foram utilizadas para cálculos de tempo de entrega e atrasos, otimizando a obtenção dos resultados sem necessidade de cálculos adicionais.
 
 #### Resultados
-O resultado de `Explain Analyze` *antes* das melhorias pode ser conferido [aqui](/query_results01_result_EXPLAIN_ANALYZE_before_changes.txt)
+O resultado de `Explain Analyze` *antes* das melhorias pode ser conferido [aqui](/query_results/01_result_EXPLAIN_ANALYZE_before_changes.txt) <br>
 O resultado de `Explain Analyze` *depois* das melhorias pode ser conferido [aqui](/query_results/02_result_EXPLAIN_ANALYZE_after_changes.txt)
 
 - 4.1 Total de vendas por vendedor: O tempo de execução diminuiu de 1922ms para 1461ms, indicando melhora no desempenho, que pode ser explicada pelo remoção de um JOIN desnecessário, aproveitamente melhor os índices acessando order_payment diretamente, diminuindo a quantidade de linhas processadas.
