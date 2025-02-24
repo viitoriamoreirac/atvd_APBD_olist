@@ -1,26 +1,31 @@
-# Esse repositório foi feito apenas com o intuito de facilitar o manejo de arquivos na entrega da atividade da matéria de Administração de Banco de Dados
+# Database Olist 
 
-## A conexão com o banco e todos os comandos foram feitos utilizando o MySQL Workbench.
+### Esse repositório foi feito apenas com o intuito de facilitar o manejo de arquivos na entrega da atividade da matéria de Administração de Banco de Dados
 
-## O intuito da atividade é realizar restauração, criação de chaves, consultas, análise de performance e backup do banco fornecido pelo professor.
+### A conexão com o banco e todos os comandos foram feitos utilizando o MySQL Workbench.
+
+### O intuito da atividade é realizar restauração, criação de chaves, consultas e análise de performance das consultas.
 
 ### Estrutura do banco
-(foto)
+
+![olist_structure](https://github.com/user-attachments/assets/ddb4089f-119e-4c8c-bcf5-e35480f7d11b)
+
 
 ### 1. Restaurar o banco de dados:
-O banco de dados foi restaurado usando o MySQL Workbench utilizando os comandos abaixo e rodando o arquivo fornecido.
-Usei os comandos:
+O banco de dados foi restaurado utilizando os comandos abaixo e rodando o arquivo fornecido.
+``` sql
 CREATE DATABASE olist;
 USE olist;
+```
 E rodei o script fornecido.
 
 ### 2. Criar um usuário para o pessoal de Business Intelligence:
 Utilizei os comandos: 
-CREATE USER -> para criar o usuario
-GRANT SELECT ON -> para dar permissão de consulta
-REVOKE INSERT, UPDATE, DELETE -> para remover as permissões
-REVOKE CREATE, ALTER, DROP -> para remover as permissões
-FLUSH PRIVILEGES -> para atualizar as permissões
+- `CREATE USER` -> para criar o usuario
+- `GRANT SELECT ON` -> para dar permissão de consulta
+- `REVOKE INSERT, UPDATE, DELETE` -> para remover as permissões
+- `REVOKE CREATE, ALTER, DROP` -> para remover as permissões
+- `FLUSH PRIVILEGES` -> para atualizar as permissões
 
 ### 3. Chaves e Restrições:
 
